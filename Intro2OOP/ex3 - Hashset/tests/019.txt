@@ -1,0 +1,24 @@
+# simple size + capacity after adding elements that should affect the capacity
+N: 0.7 0.1
+add Hi true
+add Hello true
+add Hello false
+add Bye true
+size 3
+capacity 16
+add Ciao true
+add Hi false
+size 4
+add 5 true
+add 6 true
+add 7 true
+add 8 true
+add 9 true
+add 10 true
+add 11 true
+capacity 16
+add 11 false
+capacity 16
+add 12 true
+capacity 32
+size 12

@@ -1,0 +1,4 @@
+
+The program crashes while there is segment with no pixels in that segment
+because after that the summarize of pixels in that segment will be zero 
+and we will divide in zero

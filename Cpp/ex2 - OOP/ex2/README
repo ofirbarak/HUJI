@@ -1,0 +1,13 @@
+The basic unit is Point that represents by 2 coordinates - x and y. Than line represents 2 points.
+A shape consists of collection of lines and have a name - that's the 'Shape' abstract class.
+ It has 2 derived classes - the shapes that defined in the exercise - Triangle and Trapezoid.
+
+I have created the 'Line' class because shapes are consists of lines that connected together and
+not just points, Moreover it easier to pass on lines than points because the determinant checks
+require lines therefor each iteration we need to add the last point or do other trick.
+'Shape' class is abstract because we cannot just create a shape, we creates objects, but all
+shapes have collection of lines and a name. Moreover, it contains interfaces, like printShape and
+ area that all shapes have - this is why they declared in 'Shape' class as pure virtual function
+ (use the polymorfizm).
+ 'Shapes' class contains validates function for shapes and they not placed in constructors
+ because construct an object costs an expansive time.

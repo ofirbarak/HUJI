@@ -1,0 +1,4 @@
+# simple size + capacity after using the data constructor that contains elements that should be mapped to the same bucket in the hash 
+A: DAST CLIDS Infi Hello Bye Test Algebra History Java Math
+size 10
+capacity 16

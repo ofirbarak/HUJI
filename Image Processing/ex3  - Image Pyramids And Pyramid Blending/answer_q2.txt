@@ -1,0 +1,3 @@
+When we increase the mask filter size the pic become more dirty. This happens because we build a
+gaussian pyramid for the mask and we blurring with bigger kernel.
+When we increace the pic filter size the image border become more wider.

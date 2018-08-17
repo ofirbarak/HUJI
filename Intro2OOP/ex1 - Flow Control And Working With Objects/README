@@ -1,0 +1,39 @@
+ofir
+
+
+=============================
+=      File description     =
+=============================
+Board.java          - Class represents the board
+Competition.java    - Class represents the competition
+Move.java           - Class represents a move in the game
+Player.java         - Class represents a player the game
+
+
+
+=============================
+=          Design           =
+=============================
+
+
+
+
+=============================
+=  Implementation details   =
+=============================
+
+
+
+
+=============================
+=    Answers to questions   =
+=============================
+My algorithm for the smart player:
+1. Areas = number of areas on board. (Area = a sequence of 'I' without 'O' in the middle)
+2. If i the second player (the opposite for the first):
+    a. If there is an area in size > 1
+        Check if areas is a odd number.
+        If yes, find a move in size > 1 and choose part of it that after the move still areas will be odd.
+        Otherwise, find a move in size > 1 and choose all, that after the move areas will be odd.
+    b. Otherwise, all areas are in size = 1
+        choose some area

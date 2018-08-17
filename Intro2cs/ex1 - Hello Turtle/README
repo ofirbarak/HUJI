@@ -1,0 +1,36 @@
+ofir
+*********
+Ofir Birka
+
+=================================
+=  README for ex1: Hello Turtle =
+=================================
+
+usage: python3 hello_turtle.py , math_print.py
+
+==================
+=  Description:  =
+==================
+
+The file hello_turtle.py prints 3 flowers to the standard output (screen)
+The file math_print.py contains methods that print calculated numbers
+
+=============================
+=  List of submitted files: =
+=============================
+
+README		        This file
+hello_turtle.py     Contains all the needed methods to print to the standard output
+                        (screen) the 3 flowers
+math_print.py       A program that contains methods that prints calculated numbers
+
+======================
+=  Special Comments  =
+======================
+The changes between python 2.* and 3.* :    1. Python 3.* have better Unicode support
+2. Several aspects of the core language have been adjusted to be easier for newcomers to learn
+
+-I used the website: https://wiki.python.org/moin/Python2orPython3
+-In math_print.py, task_6() could be done in loop:
+	for side in range(1,11):
+	    print(side**2)

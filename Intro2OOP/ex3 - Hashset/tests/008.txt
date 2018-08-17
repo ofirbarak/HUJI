@@ -1,0 +1,4 @@
+# simple delete of an existing value
+
+add Hi true
+delete Hi true

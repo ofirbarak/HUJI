@@ -1,0 +1,7 @@
+# complex delete - deleting elements that are mapped to the same bucket in the hash
+A: DAST CLIDS Infi Hello Bye Test Algebra History Java Math
+delete Test true
+delete Java true
+delete Hello true
+size 7
+capacity 16

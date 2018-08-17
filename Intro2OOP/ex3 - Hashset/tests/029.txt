@@ -1,0 +1,13 @@
+# simple capacity + size - after deleting elements that should affect the capacity only once
+A: DAST CLIDS Infi Hello Bye Test Algebra 
+capacity 16
+size 7
+delete Test true
+delete Hello true
+delete DAST true
+delete Infi true
+capacity 8
+size 3
+delete Clids false
+capacity 8
+size 3

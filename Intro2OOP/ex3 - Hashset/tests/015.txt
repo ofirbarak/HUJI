@@ -1,0 +1,4 @@
+# simple capacity after adding elements that shouldn't affect the capacity
+
+add Hi true
+capacity 16 

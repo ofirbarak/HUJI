@@ -1,0 +1,119 @@
+ofir
+
+
+=============================
+=      File description     =
+=============================
+package exceptions:
+    BadFilterOrderNameException     -   Error for bad parameters for filter/order command.
+    BadSectionName                  -   Error for bad section name for filter/order command.
+    InvalidUsageException           -   Error class for Invalid usage.
+    IOFileException                 -   Error occurred in accessing commands file.
+    SubSectionMissingException      -   Error in subsection is missing - filter/order.
+package fileparsing:
+    ParseCommands                   -   Parse file string to section of filter+order
+    SimpleSection                   -   Simple section in flt file.
+package filesprocessing:
+    DirectoryProcessor              -   Main class - contains the main method.
+    DirectoryProcessorFacade        -   Facade class - give more simpler usage in the program for users.
+package filters.filterExceptions:
+    IllegalValuesForBetweenFilter   -   Exception created because of first value is greater than the
+                                        second one.
+    NegativeNumberException         -   Exception for negative values for between/greater/smaller.
+package filters:
+    CheckerBoolean                  -   Checker class - check the permission is good format.
+    FilterBetweenValues             -   Filter - File size is between (inclusive) the given number of
+                                        k-bytes.
+    FilterByAll                     -   Filter - "all files are matched"
+    FilterByContains                -   Filter class - filter file if it's name contains a string.
+    FilterByEqualsToValue           -   Filter class - filter by name equals to some value.
+    FilterByExecutable              -   Filter class - files that executable similar to given value.
+    FilterByFileSize                -   Filter - File size.
+    FilterByGreater                 -   Filter - File size is strictly greater than the given number of
+                                        k-bytes.
+    FilterByHidden                  -   Filter class - filter files are hidden.
+    FilterByPrefix                  -   Filter class - filtering files that starts with a given string.
+    FilterBySmaller                 -   Filter - File size is strictly less than the given number of
+                                        k-bytes.
+    FilterBySuffix                  -   Filter class - filter files that ends with a given suffix.
+    FilterByWritable                -   Filter class - filter files are writable.
+    FilterFactory                   -   Class that filter an array of file according to a command.
+    FilterFiles                     -   Filter files according to a given filter.
+    Filtering                       -   Interface for filtering.
+    NotFilterDecorator              -   Decorator class for filtering.
+package orders:
+    CompareByAbs                    -   Order class - compare by absolute name.
+    CompareBySize                   -   Order class - compare by file size.
+    CompareByType                   -   Order class - compare by file type.
+    OrderFactory                    -   Factory class that order files according to the command.
+    ReverseOrderDecorator           -   Decorator class, add reverse function to order types.
+    SimpleOrder                     -   Class that order files according to a given comparator.
+
+README.txt                          - This file
+
+
+
+=============================
+=          Design           =
+=============================
+Firstly, there are several modules, each module responsible for something else.
+The package exceptions contains exceptions that are relevant to the whole project.
+fileparsing contains 2 classes. The "ParseCommands" class designed to parse String command, in other words
+the it has 2 methods. One for parsing a directory to list of files, and one method to simplify the flt file
+into sections (that's the purpose os "SimpleSection" class, to use easily the parsing section in the Facade
+class.
+filters package contains a lot of filters classes (they are classes because it's make sense to think that
+ each filter has individual parameters and could have extended, and in that way we can use the object
+ oriented advantages (I'll explain this..).
+ Each filter class have to implement the "Filtering" interface that contains a method called "toFilter" that
+ gets a file and return if to filter that file. The reason each class implement that interface that after
+ we decide which filter we should use we simply need to iterate over all the files and decide if to filter
+ this file, and that's what FilterFiles class does with the knowing that each class implement Filtering
+ interface, this class have filter as a property because in that way we easily extend the filters,
+ like I did (In my implementetion for "NOT" suffix). I created a decorator
+ class called "NotFilterDecorator" that opposite the result of given boolean operator (the meaning of "not").
+ In the "FilterFactory" class, class that handle the filtering, I created method that disassemble the input
+  to the command - type of filter, argument for that filter and is there is the suffix "NOT".
+  All the validations done in the right place - the validation on the input in general (not null, good
+  format of command) done in the "FilterFactory" class, in each class after we pass the arguments checking
+  the arguments are correct, if not throw an exception and we informing on a warning and create default
+  filter. I create a class called "CheckerBoolean" to check the "YES"/"NO" arguments in some of the filters.
+  It is check that include in some filters. (An abstract class because we don't need to create objects.
+  It's easy to extend the program, say more suffixes, just create the suffix and extend the filter method in
+  "FilterFiles" class.
+  About order package, it's different from filter, here when we choose which order we want, so we order
+  the array, I mean there are no special parameters for each class , like filter by size. Therefore all
+  classes are singleton's type. We don't need more than one class to order some array because we don't need
+  to save the files (moreover each class implements Comparator interface),
+  that's the purpose of "SimpleOrder" class that gets a lists of files and a Comparator and sorts the list.
+   For the extend of "REVERSE" I created "ReverseOrderDecorator", that implements the order method using the
+   order method of "SimpleOrder" class. Every class is abstract because we don't create objects, there is no
+   need. If we want to extend the commands options just to extend the SimpleOrder class or
+   ReverseOrderDecorator class depends on the command and add the property of this command to the order.
+
+Finally, we have the DirectoryProcessorFacade class that gives more nice texture to this program.
+The constructor method gets 2 directories, sends them to fileparsing.ParseCommands, gets list of files and
+list of sections. The other method called "run", runs on the sections and preform each one of them,
+after that print to the output the filtered and ordered files.
+
+Exceptions handle:
+    Type 2 errors are handled as follows: gets directories from facade class and parse it to files/sections,
+    if there is an error in a section type 2 error thrown, and in the main class we display the cause.
+    Type 1 - after gets files and sections lists, from the facade class we send the string command to filter/
+    order in one piece each factory classes disassemble the string to the command, arguments (in case of
+    filter), and suffix. Validation for command, suffix are done here. In case of filter, after we send the
+    argument to specific class, each class checks the arguments are ok, if not throw an exception.
+    Type 1 exception are handled in factory classes because than we easily create a default filter/order type
+     and return the files, moreover there are exception that unique for filter or for orders and there is
+     no need upper classes know about this error if can handle them now.
+
+Sort:
+    I used a list and Collections sort method with the right Comparable order. List is easily to extend and
+    delete.
+
+
+
+=============================
+=    Answers to questions   =
+=============================
+Above.

@@ -1,0 +1,3 @@
+The currption func will be: take regular images, reduce image resolution
+(blur+sample->pad+blur).
+In restore_image we send the image.

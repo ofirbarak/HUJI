@@ -1,0 +1,16 @@
+ofir
+
+File Description:
+Book.java - Class represents a book
+Library.java - Class represents the library
+Patron.java - Class represents a patron
+
+Design:
+In library class I made an array of books, that contains all the book in the library, moreover I
+ made an array of patrons that save all patrons in library.
+
+Implementation Issues:
+No something special
+
+Answer Questions:
+No questions were asked

@@ -1,0 +1,1 @@
+Zeros low frequencies, some other frequencies. The image is destructed.

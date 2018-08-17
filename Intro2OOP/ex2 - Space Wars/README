@@ -1,0 +1,56 @@
+ofir
+
+
+=============================
+=      File description     =
+=============================
+SpaceShip.java              - Class represents a minimal API every ship have to contain.
+SpaceShipFactory.java       - Class that used by the supplied driver to create all the spaceship objects
+                                according to the command line arguments.
+Aggressive.java             - Class represent a "Aggressive" ship
+Basher.java                 - Class represent a "Bahser" ship
+Drunkard.java               - Class represent a "Drunkard" ship
+Human.java                  - Class represent a "Human" ship
+Runner.java                 - Class represent a "Runner" ship
+Special.java                - Class represent a "Special" ship
+
+
+
+=============================
+=          Design           =
+=============================
+Drunkard design - Accelerate - randomizes
+                  Movement - get a random value between 2pi. If is more than current angel turn left,
+                  else turn right.
+                  Shield - activate shield when the distance from the nearest ship is less than 0.1
+Special design -  Smart ship:
+                  Always accelerate.
+                  If angle from the nearest ship is less than 0.21, try to shot.
+                  If the distance from the nearest ship is less than 0.09 try to shield up (to prevent lose
+                  point in case of collision).
+                  And turn to the nearest ship, for try to destroy it.
+
+
+
+=============================
+=  Implementation details   =
+=============================
+I created an abstract class called "SpaceShip" and not an interface because all ships have same actions like
+ doAction, collidedWithAnotherShip, reset.. and the important thing that all the implements of all this
+ methods, except doAction (that I'll talk later), is the same, and it makes sense it will be in an abstract
+ class that implement the 'must' things every ship have. It's simplify the code.
+ About the method 'doAction', it is not true the subclasses aren't uses this method, they just gives a
+ different initialize values (that's why all the '_isLeftTurn', 'isTelepot', 'isShoot' are properties.
+ Each class behaviour's define different values to this properties, but the cases are identical
+ (that's why all conditions are in 'SpaceShip' (super class).
+ We can extent the ships by build another class of ship that inherit from 'SpaceShip', and add new actions or
+   return new images by overriding parent class.
+ The relations between classes is very intuitive, there is one class - 'SpaceShip' that contains the
+ actions every ship must have, and every different ship we specific behavior inherit from 'SpaceShip' and do
+ as expected from it.
+
+
+
+=============================
+=    Answers to questions   =
+=============================

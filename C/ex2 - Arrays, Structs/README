@@ -1,0 +1,10 @@
+3.1:
+    _MyLinkedList is not a public struct (other functions are not using _MyLinkedList struct
+    and that why we prefer to define it in .c file.
+    Moreover when we include the header in some files and than linkage them it will cause
+    an error because we redefinition this struct.
+
+3.2:
+    The header file just tells the compiler what types external (functions, macros)
+    the compiler adds each using from header file an "unresolved" symbol in the object file,
+    and then the linker will try to find that.

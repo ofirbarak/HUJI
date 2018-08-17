@@ -1,0 +1,4 @@
+# simple size + capacity after using the data constructor that contains duplicated elements 
+A: Hi Bye Hello Ciao Shalom Hi Hello Bye
+size 5
+capacity 16

@@ -1,0 +1,30 @@
+ofir
+*********
+Ofir Birka
+
+================================================
+=  README for ex5: Comparing groceries baskets =
+================================================
+
+usage: python3 ex5.py
+
+==================
+=  Description:  =
+==================
+
+ex5 gives opportunity to compare groceries basket of different stores.
+
+=============================
+=  List of submitted files: =
+=============================
+
+README  This file
+AUTHORS Our CSE login names.
+ex5.py  The software
+
+======================
+=  Special Comments  =
+======================
+-I discussed with Netanel Faummy
+-I used the website: https://docs.python.org/3/
+    and http://stackoverflow.com/

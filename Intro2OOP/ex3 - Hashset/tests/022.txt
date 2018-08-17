@@ -1,0 +1,3 @@
+# simple capacity after using the data constructor
+A: Hi Bye Hello Ciao Shalom 
+capacity 16

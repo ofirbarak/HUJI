@@ -1,0 +1,46 @@
+ofir
+*********
+Ofir Birka
+
+================================================
+=  README for ex10: Wiki Net     	       =
+================================================
+
+usage: python3 ex10.py
+
+==================
+=  Description:  =
+==================
+
+ex10 is the python version of Wiki.
+
+=============================
+=  List of submitted files: =
+=============================
+
+README          This file
+ex10.py 	The program
+
+======================
+=  Special Comments  =
+======================
+-I used the website: https://docs.python.org/3/
+    and http://stackoverflow.com/
+
+
+Highest page rank in 50 iteration:
+United_States
+France
+Europe
+
+Highest jaccard for: 
+United_Kingdom:     Scotland
+Israel:		        Yemen
+United_States:	    Driving_on_the_left_or_right
+Algebra:	        Calculus
+World_War_II:	    Adolf_Hitler
+
+prectange_distance:
+from Christoper_Columbus: 	0.9172308364271676
+DNA:				        13.758462546407513
+History:			        61.69469316444639

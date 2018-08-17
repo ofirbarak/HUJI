@@ -1,0 +1,67 @@
+ofir
+
+
+=============================
+=      File description     =
+=============================
+package oop.ex4.data_structures:
+        AvlTree.java                - Class that implements an AVL Tree data structure.
+        Node.java                   - Class that represents a Node in a tree.
+README.txt                          - This file
+
+
+
+=============================
+=          Design           =
+=============================
+Node class is represents a node in avl tree. Each node has 3 pointers - parent and 2 children, data, key
+and height. When we add/remove child it updated in other nodes.
+AvlTree is class that represents an avl. It has one property - the root ( that is a node ).
+Node class important methods are - addNewLeftChild/addNewRightChild, that adds a new child.
+Important remark: In add/delete operations I changed the pointers and not changed the data of the node,
+because we don't know what is the data (it can be very big).
+I implement the Comparable interface because it's more clear to understand which values we compare in one
+method, and the option to change the property that define the tree (which now is key).
+
+
+=============================
+=  Implementation details   =
+=============================
+Add function implementation:
+In AvlTree class I iterate from the root down to the tree with recursion until I find a place to insert the
+new Node(with insertNodeLikeInBST function), calling setNew___Child with the new node.
+And than back to the top update the height and check the balance factor and do rotation if necessary. (with
+insertNodeLikeInBST and checkBalancedFactor functions).
+Delete:
+Same as add, do down from root to the node we want to remove (done with deleteHelper function).
+Than, if that node has 2 children, find the successor, place it where nodeToDelete was (by changing links).
+if not, make nodeToDelete child the new Node replacing nodeToDelete ( all this with deleteNodeHelper
+function).
+After that, return up to the root updating and checking balanced
+factor (with deleteHelper and checkBalancedFactor functions).
+
+shared function : checkBalancedFactor
+
+
+=============================
+=    Answers to questions   =
+=============================
+5.1: 1. Find a series of 12 numbers, such that when they are inserted into an empty AVL tree
+     one-by-one, the result will be a tree of height 4 (insertions only, no deletions):
+    10, 5, 15, 2, 20, 7, 12, 1, 3, 6, 8, 30
+5.2: 1. What is the asymptotic running time complexity of the tree construction done in AvlTree(int[]
+        data)?
+     big O(n(log n))
+     2. Bonus: What is the best possible running time complexity for a specific case?
+    O(n)
+5.3: 1. What is the asymptotic running time complexity of the tree construction done in AvlTree(AvlTree
+     avlTree)?
+    big O(n(log n))
+    2. What is the best possible running time complexity for a specific case?
+    T(n) = O(n)
+5.4: 1. What is the asymptotic running time complexity of your implementation of the operation
+     done in findMinNodes(int h)?
+     O(1)
+     2. Is that the best possible asymptotic running time complexity? If not, what is the best
+        achievable complexity?
+     O(1) with recurrence relation.

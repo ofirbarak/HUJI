@@ -1,0 +1,37 @@
+ofir, eurthokhcr
+Ofir Birka (), Bar Vered ()
+EX: 5
+
+FILES:
+whatsappServer.cpp
+whatsappClient.cpp
+Makefile
+README
+
+
+ANSWERS:
+    Q.1: a. Add in 'handleSTDInput' if the command is 'leave_group',
+            create one more function that checks the syntax of that
+            command - structure, name. If passed, send the all command
+            to 'send' function.
+         b. In 'handleClientRequest' function add oen more if that checks
+            if the command is 'leave_group', send it to another function 
+            that takes care that kind of commands. In the function, needs
+            to be checked that the group name exists and the client is
+            member of that group, if failed, send an error message to the 
+            sender, if succeed, (maybe send other group members that 'x'
+            has left), check if there are left members in the group, if not,
+            delete the group from 'groups'.
+
+    Q.2: TCP is more safer and we want that the messages that we send surely
+         will arrive their destination, moreover the order of arrived messages
+         is important.
+    
+    Q.3: 1. Games - the speed is critical, and sometimes we don't care that all
+            the data will pass. 
+         2. Aircraft controls and flight instruments - again the speed is 
+            critical.
+
+    Q.4: To avoid that, we need to store the data on the users evry period.
+         For example, write all the currently users and groups are connected, 
+         every 5 seconeds. Note that we will loss some data but not all of it.

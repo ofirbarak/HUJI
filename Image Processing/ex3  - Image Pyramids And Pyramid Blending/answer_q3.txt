@@ -1,0 +1,2 @@
+Using more levels, we get a smoother image. Because the pyramid is bigger and when we
+construct the blending image we get a smotther image.

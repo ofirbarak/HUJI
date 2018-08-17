@@ -1,0 +1,35 @@
+ofir
+*********
+Ofir Birka
+
+================================
+=  README for ex2: Conditions  =
+================================
+
+usage: python3 bmi.py, calculate_mathematical_expressions.py,
+convert_spoon_to_cup.py, largest_and_smallest.py, quadratic_equation.py,
+shapes.py
+
+==================
+=  Description:  =
+==================
+
+ex2 consist from 8 missions
+
+=============================
+=  List of submitted files: =
+=============================
+
+README                                  This file
+convert_spoon_to_cup.py                 Numbers spoons in cups
+calculate_mathematical_expressions.py   Calculate mathmetical expressions
+largest_and_smallest.py                 largest and smallest between numbers
+quadratic_equation.py                   Solutions for quadratic equation
+shapes.py                               Calculate area of shapes
+bmi.py                                  Check intelligent magician
+
+======================
+=  Special Comments  =
+======================
+
+

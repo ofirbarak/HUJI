@@ -1,0 +1,3 @@
+# simple size after using the data constructor
+A: Hi Bye Hello Ciao Shalom 
+size 5

@@ -1,0 +1,13 @@
+            |---------small---------|----------big------
+            |   +       |   *       |   +       |   *
+serial      |9.23e-07   |1.043e-06  |0.415312   |22.2943
+parallel    |0.00014377 |0.000146995|0.0491682  |1.88856
+
+1.
+There is a difference between serial and parallel computation. Parallel computation is
+much more faster, this because use of threads that helps us to run calculation for each
+row simultaneously. And use of optimisation.
+
+2.
+There is difference between +/- to *, because computing operator '+' between 2 matrix
+requires less calculations that multiplicity.

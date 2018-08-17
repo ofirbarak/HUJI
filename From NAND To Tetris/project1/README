@@ -1,0 +1,30 @@
+ofir,eurthokhcr
+
+===============================================================================
+Ofir Birka, ID , ofir.birka@mail.huji.ac.il
+Bar Vered, ID , bar.vered@mail.huji.ac.il
+
+===============================================================================
+Project 1
+----------------------- 
+  
+
+Submitted Files
+---------------
+
+README - This file
+And.hdl - And two bits
+And16.hdl - And 16 bits
+DMux.hdl - Demultiplexor
+DMux4Way.hdl - 4-way demultiplexor
+DMux8Way.hdl - 8-way 16-bit multiplexor
+Mux.hdl - Multiplexor
+Mux4Way16.hdl - 4-way 16-bit multiplexor
+Mux8Way16.hdl - 8-way 16-bit multiplexor
+Mux16.hdl - 16-bit multiplexor
+Not.hdl - 4-way 16-bit multiplexor
+Not16.hdl - 16-bit Not
+Or.hdl - Or gate
+Or8Way.hdl - 8-way Or
+Or16.hdl - 16-bit bitwise Or
+Xor.hdl - Exclusive-or gate

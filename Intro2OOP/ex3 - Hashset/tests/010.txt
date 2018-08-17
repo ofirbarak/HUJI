@@ -1,0 +1,3 @@
+# simple size test of an empty hash
+
+size 0

@@ -1,0 +1,2 @@
+# simple creation of an empty set with the specified load factors
+N: 0.6 0.1

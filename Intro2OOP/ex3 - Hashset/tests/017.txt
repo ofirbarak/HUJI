@@ -1,0 +1,10 @@
+# simple size + capacity after adding elements that should not affect the capacity
+N: 0.7 0.1
+add Hi true
+add Hi false
+add Bye true
+size 2
+capacity 16
+add Hi false
+size 2
+capacity 16

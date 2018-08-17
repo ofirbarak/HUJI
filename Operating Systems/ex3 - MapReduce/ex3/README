@@ -1,0 +1,170 @@
+ofir, eurthokhcr
+Ofir Birka (), Bar Vered ()
+EX: 3
+
+FILES:
+MapReduceFramework.cpp -- a file contains the framework
+Search.cpp -- a tester
+Makefile
+README
+
+REMARKS:
+The Design of Search:
+First we used PathName as our k1Base, and the FileNameKey as k2Base and k3Base, 
+it hodls the name of a file, and holds a function isSubString which checks if 
+a string is a substring of the name of the file. We have Substring as our 
+v1Base and v2Base, and NumOfAppearances as our v3Base, this is order to print 
+what is correct, to print the correct amount of times.
+
+First, in the map stage we create a list by using Emit2 of pairs of 
+<FileNameKey, Substring> A substring that was given as an input. It runs the 
+shuffle stage after map, a stage in which Search doesn't see, only the 
+framework. Now there is a list of <FileNameKey, List<1,0>> Which means the 
+second element is a list of 1's and 0's according to whether the substring is part
+of the fileName or not.
+Reduce then works, and reduces the list to pairs of 
+<FileNameKey, NumberOfAppearances> Which means the number of files with the 
+given file name that contain the substring, finally, we print the file name 
+the number of times it should according to it's pair.
+
+
+ANSWERS:
+
+Q1:
+If we chose to implement this with conditional variables we should do it as
+follows:
+    In ExecMap function, after calling map (user) function, send a signal,
+    something like "pthread_cond_signal(&doneMidList)"
+    And in shuffle function, instead of sem_wait, do:
+    "
+	while(..){
+        pthread_cond_timedwait(&doneMidList,..)
+	}
+	".
+    This should done with a loop because of "spurious wakeups" and we should 
+    add timer because if not we will stuck in the loop forever or until some
+	thread send signal.
+
+Q2:
+    Hyper-Threading means that a single physical core can behave like two 
+	processors means that each core can execute two different threads 
+	simultaneously. 
+    If our program is CPU bound which means the speed is determined by 
+	the speed of the processor, we will prefer only one thread to each 
+	core. Splitting the work won't help,  thread doesn't wait and 
+	therefore runs until it finishes. Furthermore additional will cause 
+	overhead because of context switch each time. This means that at this case
+    8 threads will be optimal for an octa-core.
+    If our program is not CPU bound, we can have few threads per single core.
+    This means that, some threads will be at the waiting list, while others 
+	will proceed the CPU. This procedure will save waiting time. This means 
+	that we give each thread opportunity to progress when they can, and 
+	save time. However, we do need to realize too many threads will 
+	result in high overhead.
+
+Q3:
+	First, we will check Utilizing multi-cores:
+	in an ascending order, by the implementation quality is a, d, c, b.
+	a is the worst since we use only one core. c and b are the best because 
+	thread multi-cores better than processes do.
+
+	Second, we will check The abillity to create a sophisticated scheduler, 
+	based on interal data:
+	on a, there will be no scheduler since there is only one running thread.
+	on b, they are already managed by Posix's library and therefore we cannot 
+	manage them. c, Now, we have full access to the management of the threads, 
+	and can now make a sophisticated scheduler.
+	on d, We can try and create a scheduler, but it will not be as 
+	sophisticated as c, this is because blocked process doesn't let other 
+	processes execute until it's unblocked.
+
+	Third, we will check Communication time:
+	on a, there is only one thread and therefore the communication time is 
+	zero. b, Threads have shared data, and therefore have better 
+	communication time than processes, b uses the operating system, this 
+	means that the communication time in b is better than c.
+	on c, explained in "on b".
+	on d, The communication between processes is not fast, and therefore 
+	the worst among uses.
+
+	Fourth, we will check the ability to progress while a certain 
+	thread/process is blocked:
+	on b and c, threads keep running while there is a thread that is blocked.
+	on a and d, processes cannot continue while the first process is blocked.
+
+	Fifth, we will check overall speed:
+	On a, it is by far the worst. This is because there is only one process 
+	and one thread places that can be ran simultaneously and this worsen the 
+	speed.
+	On others, We need to first state that context switching in threads is 
+	faster and doesn't need to interact with the OS, in contrast to context 
+	switching in processes.
+	Furthermore, threads have shared data and use less resources than 
+	processes.
+	In conclusion, in an ascending order(First is the slowest):
+	a,d,c,b and b is first because of optimizations.
+
+Q4:
+    A process parent and child share nothing.
+    A kernel level thread parent and child share Heap and Global Variables.
+    A user level thread parent and child share Heap and Global Variables.
+
+Q5:
+    Deadlock is a scenario in which threads are waiting for each other to 
+	finish, Creating a circle dependency and therefore none of them can 
+	proceed.
+    For an example, we will take two mutexes, firstMutex and secondMutex.
+    And let's assume that Thread 1 first locks firstMutex and then locks 
+	secondMutex, And Thread 2 first locks secondMutex and then firstMutex.
+    Assuming they run simultaneously, a deadlock can appear if Thread 1 locks 
+	firstMutex And Thread 2 locks secondMutex, which makes both of them be 
+	unable to continue the next line When they will try to lock an already 
+	locked mutex, and then a deadlock will apear.
+
+    Livelock is a scenario in which threads give up the lock to another 
+	thread, but they do it each time, meaning they don't progress, only 
+	give a lock to the other thread over and over again.
+
+    I'll write an example of code to make clear:
+    This will be the code of the first Thread:
+
+    while(1)
+    {
+    if (!lock(firstMutex))
+    {
+        continue
+    }
+    if (!lock(secondMutex))
+    {
+        unlock(firstMutex)
+        continue
+    }
+    // some code
+    unlock(secondMutex)
+    unlock(firstMutex)
+    }
+
+    This will be the code of the second Thread:
+
+    while(1){
+    if(!lock(secondMutex))
+    {
+        continue
+    }
+    if(!lock(firstMutex))
+    {
+        unlock(secondMutex)
+        continue
+    }
+    //some code
+    unlock(firstMutex)
+    unlock(secondMutex)
+    }
+
+    I'll give a brief explanation of what happens here:
+    Thread 1 locks the firstMutex and Thread 2 locks the second Mutex.
+    Thread 1 continues because secondMutex is locked and restarts the while.
+    Same goes for Thread 2 and firstMutex.
+
+    This goes on and on, and therefore the threads don't actually progress, 
+	only looking like they progress. This is a state of livelock.

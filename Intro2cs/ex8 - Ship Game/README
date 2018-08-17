@@ -1,0 +1,30 @@
+ofir
+*********
+Ofir Birka
+
+===============================
+=  README for ex8: Ship Game  =
+===============================
+
+usage: python3 ex8.py
+
+==================
+=  Description:  =
+==================
+
+Ship Game
+
+=============================
+=  List of submitted files: =
+=============================
+
+README  This file
+ship.py Ship class
+game.py Game Class
+
+======================
+=  Special Comments  =
+======================
+-I did not consult anyone
+-I used the website: https://docs.python.org/3/
+    and http://stackoverflow.com/

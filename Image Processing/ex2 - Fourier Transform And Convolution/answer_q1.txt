@@ -1,0 +1,1 @@
+Because convolotion is an approximation to deriative and fourier is precisely.

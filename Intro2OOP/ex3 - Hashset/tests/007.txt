@@ -1,0 +1,4 @@
+# simple contains of an existing value
+
+add Hi true
+contains Hi true

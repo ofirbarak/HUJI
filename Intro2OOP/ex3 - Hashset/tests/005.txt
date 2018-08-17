@@ -1,0 +1,4 @@
+# simple add test of an existing value
+
+add Hi true
+add Hi false

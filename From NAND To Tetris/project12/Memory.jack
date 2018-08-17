@@ -1,0 +1,101 @@
+class Memory 
+{
+    
+    static int length;
+    static int next;
+    static Array freeList;
+	static Array memory;
+	
+
+    /** Initializes memory parameters. */
+    function void init() 
+    {
+		let memory = 0;
+        let length = 0;
+        let next = 1;
+        let freeList = 2048;
+        let freeList[length] = 16384-2048;
+        let freeList[next] = null;
+        return;
+    }
+
+    /** Returns the value of the main memory at this address. */
+    function int peek(int address) 
+    {
+        return memory[address];
+    }
+
+    /** Sets the value of the main memory at this address
+     *  to the given value. */
+    function void poke(int address, int value) 
+    {
+        let memory[address] = value;
+        return;
+    }
+	
+
+    /** finds and allocates from the heap a memory block of the 
+     *  specified size and returns a reference to its base address. */
+    function int alloc(int size) 
+    {
+        var Array foundBlock, temp, prev;
+        let temp = freeList;
+        let foundBlock = null;
+        let prev = null;
+        while(~(temp[length] > size)){
+            let prev = temp;
+            let temp = temp[next];   
+        }         
+        if(~(temp[length] > size)){
+             return null;
+        }
+        return Memory.finishAlloc(temp, prev, size);
+    }
+	
+	function int finishAlloc(Array fblock,Array prev, int size){
+        var Array nextBlock;
+        var int newSize;
+        let newSize = fblock[length];
+        if(fblock[length] > (size + 3)){
+            let nextBlock = fblock + size + 1;
+            let nextBlock[next] = fblock[next];
+            let nextBlock[length] = fblock[length] - size - 1;
+            let newSize = size+1;            
+        }
+        else{
+            let nextBlock = fblock[next];        
+        }
+
+        if (prev = null){            
+            let freeList = nextBlock;
+        }
+        else{
+            let prev[next]=nextBlock;
+        }
+        let fblock=fblock+1;
+        let fblock[-1] = newSize;
+        return fblock;        
+	}
+
+
+    function void deAlloc(int object) {
+        var Array preBlock,nextBlock,segment;
+        if(freeList>object){        
+            let segment = object - 1;
+            let segment[length] = object[-1];
+            let segment[next] = freeList;
+            let freeList = segment;
+        }
+        else{
+            let preBlock = freeList;
+            while(~(preBlock[next] = null) & (preBlock[next] < object)){
+                let preBlock = preBlock[next];
+            }
+            let segment = object - 1;
+            let segment[length] = object[-1];
+            let segment[next] = preBlock[next];
+            let preBlock[next] = segment;
+        }
+        return;
+    }   
+}

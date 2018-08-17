@@ -1,0 +1,99 @@
+ofir
+
+netanelf
+
+
+=============================
+=      File description     =
+=============================
+package general:
+	GeneralHelpFunctions - General functions for parsing.
+    
+package handleLine:
+	HandleSavedParam - Handle a saved parameter - variable or function.
+	HandleSJavaType - Check if a line opened by a known word is good.
+	ScopeHandler - Handle scope functions.
+	package booleanScope:
+		ConditionStatementHandler - A class which handle all if/while statements.
+	
+	package functions:
+		SJavaFunctionsValidation - Check S-Java functions.
+		
+	package variables:
+		HandleSJavaVariables - Check if type is a known s-java variables words.
+		SJavaVariablesValidation - Handle a general s-java variables.
+		
+package main:
+	Parser - The REAL parser for checking a document.
+	Sjavac - Main class.
+	
+package scope:
+	FunctionScope - Represents a function scope.
+	MainScope - Represents the main scope.
+	SavedParameter - Class that represents a new declaration parameter(variable/method).
+	Scope - Class that represents a scope in the file.
+	
+	
+README.txt - This file
+
+
+=============================
+=          Design           =
+=============================
+Parser is the main class that checks the file. We checks each line and decide if it's a Known s-java line
+ type [ like lines starts with 'int','if','void','{', '(', spaces lines,... ].
+HandleSJavaType send the line according the type (= the first word) to the wright check. If type is void
+so pass the line to SJavaFunctionsValidation. If type is 'if' or 'while' pass to ConditionStatementHandler.
+If it's variable ('int', 'double','final',..) pass to HandleSJavaVariables - there we check if it's final
+so pass to SJAVAFinalVariableValidation otherwise pass to SJavaVariablesValidation. Each sub-class checks
+according the definitions in exercise pdf.
+
+If line is not a saved word so it's or assigning value to variable or calling for a method, this situations
+are handled in HandleSavedParam class.
+
+About Scope:
+We have the main scope that can be just one in the program so we created singleton MainScope class.
+Each scope (main,if,while,methods) have variables and externalVariables ( this is another map because after
+we change variable value in inner scope we want after we exit this scope this variable value return to his
+last value in parent scope).
+Main scope is of course kind of scope, in addition it contains map of function, and the variable in main
+scope are globals. Function scope is a scope but have a name and list of params.
+About the saved variables:
+SavedParameter is class that save type,value and name. When we equals between two params we need to ensure
+their types are 'equals' (can contain the other type).
+
+=============================
+=    Answers to questions   =
+=============================
+6.1 Error Handling:
+    Each sub-class do the checks and if an error occurred so an exception is thrown after the test failed,
+    and it's easy to differentiate between errors. So the error is thrown to parent functions until it
+    comes to the main class, there we catch the IOException first and the others.
+
+6.2 Object Oriented Design:
+	*We have created a several classes that represents differents objects that together composes the s-java 
+	code we recieved as a input to our program. Each of this class handles and verifies her own data, from 
+	syntax point of view and from logic point of view.
+	
+	*Our program can easily support new types of variables such as floats, simply by defining the float logic
+	at our SavedParameter class and by adding it as a valid type into our isTypeVariable method located at
+	HandleSJavaType class.
+	
+	Which modifications we would have to make in order to add support of switch statements:
+	*We would have to modificate our parser in order to acknowledge switch as a condition statement which 
+	requires a new scope such as if/while and on our ConditionStatementHandler class we would add the logic 
+	and the syntax of switch statement.
+	Importing the methods and global variables of one s-Java file to another.
+	*We would have to add this methods and variables to the single main class (in MainScope class).
+
+
+6.3 Regular Expressions:
+	* CONDITION_STATEMENT_EXTRACT_REGEX = "^\\s*[(]\\s*(.*)\\s*[)]\\s*$"
+	This regular expression was used in order to extract a condition statement of if/while.
+	This regex is actually locating the first '(' char and takes the entire string located from that point
+	until it meets the latest ')' char.
+	
+	* ^\s*(\w+)\s+(.*)"
+	This expression was used in order to get the first word (collection of single chars without any space 
+	char between them).
+

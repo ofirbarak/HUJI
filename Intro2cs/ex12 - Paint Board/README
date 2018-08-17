@@ -1,0 +1,38 @@
+ofir
+*********
+Ofir Birka
+
+eurthokhcr
+*********
+Bar Vered
+
+
+=============================================
+    == README for ex12: Networks And Gui ==
+=============================================
+usage: python3 gui.py <USER_NAME> <SERVER_ADDRESS><SERVER_PORT>
+<GROUP_NAME>
+
+
+====================
+  == Description ==
+====================
+Ex12 is a program that uses Networking, sockets and gui.
+A member can join a group and then draw shapes, like rectangles
+and lines, and other member in his group can see it.
+A member can leave the group, and draw shapes.
+There's also a help window.
+
+========================================
+   == List of submitted files  ==
+========================================
+gui.py - The file incharge of the graphical user interface.
+client.py client file.
+
+========================================
+        == Special Comments   ==
+========================================
+I discussed with Bar Vered, my exercise partner.
+We used the website stackoverflow.com
+
+

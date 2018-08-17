@@ -1,0 +1,158 @@
+ofir
+
+
+=============================
+=      File description     =
+=============================
+SimpleSet.java              - Interface represents a simple set.
+SimpleHashSet.java          - An abstract class implementing SimpleSet.
+OpenHashSet.java            - A hash-set based on chaining. Extends SimpleHashSet.
+WrapperLinkedList.java      - A class that wrapper the linkedList with an array.
+ClosedHashSet.java          - A hash-set based on closed-hashing with quadratic probing. Extends
+                              SimpleHashSet.
+CollectionFacadeSet.java    - Class that wrap an object implementing java’s
+                              Collection<String> interface, such as LinkedList<String>, TreeSet<String>,
+                              or HashSet<String>, with a class that has a common type with your own
+                              implementations for sets. Implementing SimpleSet.
+Ex3Utils.java               - Contains a single static helper method: file2array, which returns the lines in a
+                              specified file as an array.
+SimpleSetPerformanceAnalyzer.java - Has a main method that measures the run-times requested in the
+                                    “Performance Analysis” section in pdf exercise file.
+
+
+
+=============================
+=    Answers to questions   =
+=============================
+1. How you implemented OpenHashSet’s table?
+    I created a wrapper class, that has one property - LinkedList<String>, and implement all the methods
+    I'll need. In OpenHashSet class, I created an array of WrapperClass objects (means, in each cell we have
+    LinkedList). And that's what we wanted..
+2. How you implemented the deletion mechanism in ClosedHashSet?
+    I have created a constant called 'deleted' and every cell that needs to be deleted, point to this
+    variable. In that way I distinguish between a deleted cell and the string "deleted".
+3. Bonus:
+For what contains operations and for which data structure did the warm-up make the
+most difference in your implementation? How much time did its warm-up take, and how much did
+the actual measurement?
+ClosedHashSet: contains "-13170890158", it took
+Actual: 3811446, without warm-up: 7510584, the difference: 3699138
+
+4. RESULTS :
+#These values correspond to the time it takes (in ms) to insert data1 to all data structures
+OpenHashSet    = 64502
+ClosedHashSet  = 427341
+TreeSet        = 79        ***Fastest
+LinkedList     = 61774
+HashSet        = 84
+
+#These values correspond to the time it takes (in ms) to insert data2 to all data structures
+OpenHashSet    = 207
+ClosedHashSet  = 32
+TreeSet        = 74
+LinkedList     = 32700
+HashSet        = 20        ***Fastest
+
+Insert data1 vs. data2
+Data Type           data1   |   data2
+---------       |   -----   |   -----
+OpenHashSet     |   64502   |   207
+ClosedHashSet   |   427341  |   32
+TreeSet         |    79     |   74
+LinkedList      |   61774   |   32700
+HashSet         |    84     |   20
+
+
+#These values correspond to the time it takes (in ns) to check if "hi" is contained in
+#the data structures initialized with data1
+OpenHashSet    = 54
+ClosedHashSet  = 115
+TreeSet        = 142
+LinkedList     = 823214
+HashSet        = 12        ***Fastest
+
+#These values correspond to the time it takes (in ns) to check if "-13170890158" is contained in
+#the data structures initialized with data1
+OpenHashSet   = 1020154
+ClosedHashSet = 3811446
+TreeSet       = 252
+LinkedList    = 950714
+HashSet       = 40    ***Fastest
+
+Contain "hi" vs. "-13170890158"
+Data Type           "hi"    |   "-13170890158"
+---------       |   -----   |  --------------
+OpenHashSet     |   54      |       1020154
+ClosedHashSet   |   115     |       3811446
+TreeSet         |   142     |       252
+LinkedList      |   823214  |       950714
+HashSet         |    12     |       78
+
+#These values correspond to the time it takes (in ns) to check if "23" is contained in
+#the data structures initialized with data2
+OpenHashSet     = 54
+ClosedHashSet   = 52        ***Fastest
+TreeSet         = 83
+LinkedList      = 356
+HashSet         = 91
+
+#These values correspond to the time it takes (in ns) to check if "hi" is contained in
+#the data structures initialized with data2
+OpenHashSet     = 19
+ClosedHashSet   = 93
+TreeSet         = 191
+LinkedList      = 845827
+HashSet         = 14        ***Fastest
+
+Contain "23" vs. "hi"
+Data Type           "23"    |   "hi"
+---------       |   -----   |  --------------
+OpenHashSet     |   54      |       19
+ClosedHashSet   |   52      |       93
+TreeSet         |   83      |       191
+LinkedList      |   356     |       845827
+HashSet         |   91      |       14
+
+Account, in separate, for OpenHashSet’s and ClosedHashSet’s bad results for data1.txt:
+data1-worst:
+OpenHashSet: contains "-13170890158" - 1020154
+ClosedHashSet: contains "-13170890158" - 3811446
+
+Summarize the strengths and weaknesses of each of the data structures as reflected by
+the results. Which would you use for which purposes?
+4.1: OpenHashSet - Better than closed hash set, but takes a lot time to insert values. Efficient in adding
+        elements, and contains. Better than ClosedHashSet in insert different words with same hash.
+     ClosedHashSet - takes a lot time to preform methods like - insert, add, but best in deleting.
+     TreeSet - good comparing to hashSets I implemented
+     LinkedList - worst data structure, I surely wo'nt prefer this type in case of handling a big data,
+     it takes a lot of time to iterate over the list and this makes it very slow.
+     HashSet - best data structure, it's the fastest one - fast in insert data, delete, contain,
+     all methods that are most used. I uses this when I need to handling a big data that demand adding,
+     deleting, check if contains something.
+
+How did your two implementations compare between themselves?
+4.2: OpenHashSet is faster than the ClosedHashSet almost in everything. ClosedHashSet is better when we want
+        to insert array of element that contains mixture hash value.
+     ClosedHashSet is better when we have data that not all elements have the same hash  value.
+
+How did your implementations compare to Java’s built in HashSet?
+4.3: My OpenHashSet and ClosedHashSet is usually worst than java's built in HashSet. But in preforming
+        contains on data with same hash OpenHashSet is nearly like HashSet.
+
+What results surprised you and which did you expect?
+4.4: I expected the the LinkedList will be the worst one because all it's methods are depend on the length
+    of the list, and the length of the list increase always by the length of the data we inserting,
+     and if the data is big so iterating over the LinkedList will be long. I also expected that HashSet.
+     What made me surprised that ClosedHashSet was worst that TreeSet, I thought that ClosedHashSet will
+     be better because it is kind of HashSet what makes sense it will run fast.
+
+Did you find java’s HashSet performance on data1.txt surprising? Can you explain it? Can
+google?
+4.5 It was very surprising, it takes O(1) and it's very fast. I guess it combination of OpenHashSet and
+    ClosedHashSet. Google says it is using hash map. HashMap works like OpenHashSet, it remember <value,key>
+    and store this in hash(key).
+
+If you tried clamping expressions to valid indices in more than one way, what were they
+and how significant was the speed-up?
+4.6: I would use bitwise or simple math operation.
+    It will speed-up the performance at ClosedHashSet and OpenHashSet.

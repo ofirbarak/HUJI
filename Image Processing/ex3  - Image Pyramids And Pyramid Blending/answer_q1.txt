@@ -1,0 +1,3 @@
+Multiply each level with different value means change the gaussian filter.
+When we change the values it change the gaussian filter each level in the pyramid
+(we need that beacuse we use a singel filter).

@@ -1,0 +1,30 @@
+ofir, eurthokhcr
+Ofir Birka (), Bar Vered ()
+EX: 4
+
+FILES:
+CacheFS.cpp -- a file contains the cache implementation
+Answers.pdf -- pdf contains the answers to theoretical part
+Makefile
+README
+
+DESCRIPTION:
+We've constructed the cache with list of blocks. Every block contains
+information about the file - actual size of the block, the date, id..
+FBR algorithm implemented by creating a list of blocks and two indexes
+ representing the indices of old part, middle part, and the new part.
+The first list of blocks and the fbr_blocks_list are lise stack -
+ every time we add new block, if it already in the list, delete it and add
+ it to the end of the list.
+  When we need to delete a block, if it LRU or LRU algorithms it easy,
+  for FBR algorithm we look at the old part (look at fbr_blocks_list, in the old
+  part, from thee begining to EndOldPart variable, and take the one according
+  to LRU).
+When we want to read, first we try to find it in the cache, if not all the
+blocks there so we need to read the from the disk and save them on the cache.
+
+REMARKS:
+None.
+
+ANSWERS:
+    appear in Answers.pdf.

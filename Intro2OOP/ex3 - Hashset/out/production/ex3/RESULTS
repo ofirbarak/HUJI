@@ -1,0 +1,49 @@
+#Fill in your runtime results in this file
+#You should replace each X with the corresponding value
+
+#These values correspond to the time it takes (in ms) to insert data1 to all data structures
+OpenHashSet_AddData1 = 64502
+ClosedHashSet_AddData1 = 498336
+TreeSet_AddData1 = 79
+LinkedList_AddData1 = 61774
+HashSet_AddData1 = 84
+
+#These values correspond to the time it takes (in ms) to insert data2 to all data structures
+OpenHashSet_AddData2 = 207
+ClosedHashSet_AddData2 = 32
+TreeSet_AddData2 = 74
+LinkedList_AddData2 = 32700
+HashSet_AddData2 = 20
+
+#These values correspond to the time it takes (in ns) to check if "hi" is contained in
+#the data structures initialized with data1
+OpenHashSet_Contains_hi1 = 41
+ClosedHashSet_Contains_hi1 = 100
+TreeSet_Contains_hi1 = 245
+LinkedList_Contains_hi1 = 852645
+HashSet_Contains_hi1 = 25
+
+#These values correspond to the time it takes (in ns) to check if "-13170890158" is contained in
+#the data structures initialized with data1
+OpenHashSet_Contains_negative = 965687
+ClosedHashSet_Contains_negative = 4198981
+TreeSet_Contains_negative = 276
+LinkedList_Contains_negative = 1081875
+HashSet_Contains_negative = 78
+
+#These values correspond to the time it takes (in ns) to check if "23" is contained in
+#the data structures initialized with data2
+OpenHashSet_Contains_23 = 41
+ClosedHashSet_Contains_23 = 36
+TreeSet_Contains_23 = 60
+LinkedList_Contains_23 = 185
+HashSet_Contains_23 = 98
+
+#These values correspond to the time it takes (in ns) to check if "hi" is contained in
+#the data structures initialized with data2
+OpenHashSet_Contains_hi2 = 16
+ClosedHashSet_Contains_hi2 = 53
+TreeSet_Contains_hi2 = 105
+LinkedList_Contains_hi2 = 808193
+HashSet_Contains_hi2 = 13
+

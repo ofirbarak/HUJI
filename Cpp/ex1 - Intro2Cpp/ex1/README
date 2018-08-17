@@ -1,0 +1,13 @@
+We have 'Point' class that represents a point (contains x and y coordinates).
+The 'PointSet' class has an array of pointers to points (that already created).
+When we add points i check if there is a place, if not double the array and copy all points
+to the new array and add the point to the first place is possible.
+When delete a point i find the index that point placed and then delete it and move the last
+point to that place such that all the points are continuity in the array.
+
+So, in the beginning i insert all points to the array.
+After that run the algorithm (counter-clockwise) - _find the lowest rightmost point, then sort
+all the array by polar angel. Then begin at the minimal point - take the next two point in
+the sorted array, if we turn left we don't count this point - so swap it with the next point.
+In that way we run until the last point (and that why i increased the array by 1 -  to place
+the minimal point again, because every time we check if we go right or left we need 3 points.

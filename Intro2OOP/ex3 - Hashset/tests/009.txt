@@ -1,0 +1,3 @@
+# simple delete of a non-existing value
+
+delete Hi false

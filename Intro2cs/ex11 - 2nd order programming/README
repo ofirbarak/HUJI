@@ -1,0 +1,32 @@
+ofir
+*********
+Ofir Birka
+
+============================================
+=  README for ex11: 2nd order programming  =
+============================================
+
+usage: python3 ex11.py
+
+==================
+=  Description:  =
+==================
+
+Work with 2nd function:
+const function, identity, sin, sum, sub, mul, divide, inverse, compose,
+derivative and integral function.
+The program draw the functions to screen.
+
+=============================
+=  List of submitted files: =
+=============================
+
+README  This file
+ex11.py The functions
+
+======================
+=  Special Comments  =
+======================
+-I did not consult anyone
+-I used the website: https://docs.python.org/3/
+    and http://stackoverflow.com/

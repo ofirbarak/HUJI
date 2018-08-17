@@ -1,0 +1,6 @@
+# simple delete - deleting elements that are mapped to different buckets in the hash 
+A: DAST CLIDS Infi Hello Bye Test Algebra History Java Math
+delete History true
+delete CLIDS true
+size 8
+capacity 16
